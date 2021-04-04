@@ -1,0 +1,81 @@
+//// Each team member's name and contributions ////////////
+Team member #1: Matthew Rutigliano
+Contributions: All of it. I did the project alone.
+
+
+//// My own rating on the functionality ///////////////////
+Rating: C
+Explanation: Unfortunately, in the final stages of network implementation, I've encountered a
+terrible bug that crashes the client with certain commands. I believe it's tied to the length of
+the server's response, but no matter how large I make my buffers, I still enounter segmentation faults,
+invalid pointers, and malloc issues. Which error message and how much of the correct output is printed
+seems entirely unpredictable. Stat is the command worst affected, but append and cat can fall
+victim as well.
+I extensively tested my file system locally, and believe it worked perfectly. The networking is my
+shortcoming.
+
+
+//// Test cases ///////////////////////////////////////////
+Results are paraphrased. All successful outputs are formatted as they should be.
+Port used: 11099
+Address Used: 0.0.0.0
+
+Test case #1: ls
+Results: nothing is listed (success)
+
+Test case #2: mkdir dir1
+Results: success
+
+Test case #3: mkdir dir2
+Results: success
+
+Test case #4: ls
+Results: dir1 and dir2 are listed (success)
+
+Test case #5: cd dir1
+Results: success
+
+Test case #6: create file1
+Results: success
+
+Test case #7: append file1 helloworld!
+Results: success
+
+Test case #8: stat file1
+Results: Garbled output followed by munmap_chunk: invalid pointer (failure, hard crash)
+
+Test case #9: ls
+Results: file1 is listed (success)
+
+Test case #10: cat file2
+Results: helloworld! is printed (success)
+
+Test case #11: head file2 3
+Results: hel is printed (success)
+
+Test case #11: rm file2
+Results: Error: file2 doesn't exist (success)
+
+Test case #12: cat file2
+Results: munmap_chunk: invalid pointer (failure, hard crash)
+
+Test case #13: create file1
+Results: Error: file1 exists (success)
+
+Test case #14: rm file2
+Results: success
+
+Test case #15: ls
+Results: Directory is empty (success)
+
+Test case #16: home
+Results: Success
+
+Test case #17: ls
+Results: dir1 and dir2 listed (success)
+
+Test case #19: rmdir1
+Results: success
+
+Test case #20: ls
+Results: dir2 is listed (success)
